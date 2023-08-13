@@ -1,13 +1,13 @@
-/** 
+/**
  @file  nx.h
  @brief ENet NX (NintendoSDK) header
 */
 #ifndef __ENET_NX_H__
 #define __ENET_NX_H__
 
-#include "nn/socket.h"
+#include <cstddef>
 
-typedef s32 ENetSocket;
+typedef int ENetSocket;
 
 #define ENET_SOCKET_NULL -1
 
@@ -19,7 +19,7 @@ typedef s32 ENetSocket;
 
 typedef struct
 {
-    void * data;
+    void* data;
     size_t dataLength;
 } ENetBuffer;
 
@@ -30,4 +30,3 @@ typedef struct
 typedef void ENetSocketSet;
 
 #endif /* __ENET_NX_H__ */
-
