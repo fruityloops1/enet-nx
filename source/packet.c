@@ -4,7 +4,7 @@
 */
 #include <string.h>
 #define ENET_BUILDING_LIB 1
-#include "enet.h"
+#include "enet/enet.h"
 #include "nn/socket.h"
 
 /** @defgroup Packet ENet packet functions 

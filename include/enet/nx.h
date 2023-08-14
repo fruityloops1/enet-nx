@@ -5,7 +5,7 @@
 #ifndef __ENET_NX_H__
 #define __ENET_NX_H__
 
-#include <cstddef>
+#include <stddef.h>
 
 typedef int ENetSocket;
 

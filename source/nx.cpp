@@ -8,14 +8,13 @@
 #include <errno.h>
 
 #include <fcntl.h>
-#include <unistd.h>
 
 #include "nn/os.h"
 #include "nn/socket.h"
 #include "nn/time.h"
 
 #define ENET_BUILDING_LIB 1
-#include "enet.h"
+#include "enet/enet.h"
 
 #ifdef __cplusplus
 extern "C" {
