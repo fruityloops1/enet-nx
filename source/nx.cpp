@@ -12,6 +12,7 @@
 #include "nn/os.h"
 #include "nn/socket.h"
 #include "nn/time.h"
+#include <sys/time.h>
 
 #define ENET_BUILDING_LIB 1
 #include "enet/enet.h"
@@ -182,9 +183,9 @@ int enet_socket_connect(ENetSocket socket, const ENetAddress* address)
 
     memset(&sin, 0, sizeof(sockaddr));
 
-    sin.sin_family = AF_INET;
-    sin.sin_port = ENET_HOST_TO_NET_16(address->port);
-    sin.sin_addr.data = address->host;
+    sin.family = AF_INET;
+    sin.port = ENET_HOST_TO_NET_16(address->port);
+    sin.address.data = address->host;
 
     result = nn::socket::Connect(socket, &sin, sizeof(sockaddr));
     if (result == -1 && nn::socket::GetLastErrno() == EINPROGRESS)
@@ -223,9 +224,9 @@ int enet_socket_send(ENetSocket socket,
     if (address != NULL) {
         memset(&sin, 0, sizeof(sockaddr));
 
-        sin.sin_family = AF_INET;
-        sin.sin_port = ENET_HOST_TO_NET_16(address->port);
-        sin.sin_addr.data = address->host;
+        sin.family = AF_INET;
+        sin.port = ENET_HOST_TO_NET_16(address->port);
+        sin.address.data = address->host;
     }
 
     // This API uses msgsend() on unix - yuzu doesn't support this as of now.
@@ -282,8 +283,8 @@ int enet_socket_receive(ENetSocket socket,
     }
 
     if (address != NULL) {
-        address->host = (enet_uint32)sin.sin_addr.data;
-        address->port = ENET_NET_TO_HOST_16(sin.sin_port);
+        address->host = (enet_uint32)sin.address.data;
+        address->port = ENET_NET_TO_HOST_16(sin.port);
     }
 
     return recvLength;
